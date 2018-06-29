@@ -1,0 +1,18 @@
+{% extends './layout.njk' %}
+
+{% block content %}
+
+	<h1>Введите данные для создания пользователей!!</h1>
+
+	<div><b><# error #></b></div>
+
+	<form action="/renew_user" method="post">
+		<label>Имя (пока изменять нельзя)</label><br>
+		<input type="text" name="name" value=<#user.name#>><br>
+		<label>Почта</label>
+		<input type="email" name="email" value=<#user.email#>><br>
+		<label>Возраст</label>
+		<input type="number" name="age" value=<#user.age#>><br>
+		<input type="submit" value="Сохранить пользователя">		
+	</form>
+{% endblock %}

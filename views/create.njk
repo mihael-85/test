@@ -1,0 +1,38 @@
+{% extends './layout.njk' %}
+
+{% block content %}
+
+	<h1>Введите данные для создания пользователей!!</h1>
+
+	<div><b><# error #></b></div>
+
+	<form action="/create_user" method="post">
+		<label>Имя</label><br>
+		<input type="text" name="name" /><br>
+		<label>Почта</label>
+		<input type="email" name="email" /><br>
+		<label>Возраст</label>
+		<input type="number" name="age" /><br>
+		<input type="submit" value="Создать пользователя">		
+	</form>
+
+
+	<div> Пользователи, которые хранятся в Вашей БД : </div>
+
+		{% for user in users %}
+			{% set q = user._id %}
+			{% set 	qq = 'userdel?_id=' + q %}
+			<form method="post">
+			{# <div><# user._id #></div> #}
+			<div>Имя: <b><# user.name #></b></div> 
+			<div>Почта: <b><# user.email #></b></div> 
+			<div>Возраст: <b><# user.age #></b></div> 
+			<input type="submit" value="Удалить пользователя" onclick="javascript: form.action='<#qq#>';">
+			<input type="submit" value="Редактировать пользователя" onclick="javascript: form.action='/renew_user_page?name=<#user.name#>&email=<#user.email#>&age=<#user.age#>';">
+			<div><b>-----------------------------------------</b></div>	
+		{% endfor %}
+
+
+
+
+{% endblock %}
