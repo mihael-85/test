@@ -1,6 +1,7 @@
 const userService = require('../services/user-services')
 const validator = require('froncubator-validator-js')
 const {sendErr} = require('../helper')
+var ObjectID = require('mongodb').ObjectID
 
 
 async function indexPage(req, res) {
@@ -58,6 +59,7 @@ async function deletePage(req, res) {
 
 async function renewPage(req, res) { 
 	let user = {}
+	user._id = req.query._id
 	user.name = req.query.name
 	user.email = req.query.email
 	user.age = req.query.age
@@ -71,12 +73,12 @@ async function renewPage(req, res) {
 async function renewUser(req, res) {
 
 	try{
-		let id = req.body._id
+		let	id = req.body.id
 		let name = req.body.name || ''
 		let email = req.body.email || ''
 		let age = +req.body.age || 0
 	
-		console.log(age)
+		console.log('id :', id)
 	//валидация
 		if(!validator.isStr(name, 0, 32))
 			return sendErrCreate(res, 'ошибка в формате name. Поле name должно быть не более 32 символов')
@@ -89,7 +91,7 @@ async function renewUser(req, res) {
 
 	
 		//замена пользовательских данных
-		let renewResult =  await userService.renewUser({
+		let renewResult =  await userService.renewUser( id , {
 			name,
 			email,
 			age

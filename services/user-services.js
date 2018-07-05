@@ -13,9 +13,8 @@ async function findUser(name) {
 	return foundUser
 }
 
-async function renewUser(userObject) {
-	// let name = user
-	let result = await models.User.update({name: userObject.name}, userObject)
+async function renewUser(id, userObject) {
+	let result = await models.User.updateOne({_id: id }, userObject)
 	return result
 }
 

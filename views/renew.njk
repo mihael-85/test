@@ -7,6 +7,7 @@
 	<div><b><# error #></b></div>
 
 	<form action="/renew_user" method="post">
+		<input style="display: none" type="text" name="id" value=<#user._id#>><br>
 		<label>Имя (пока изменять нельзя)</label><br>
 		<input type="text" name="name" value=<#user.name#>><br>
 		<label>Почта</label>

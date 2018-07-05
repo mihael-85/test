@@ -23,12 +23,12 @@
 			{% set q = user._id %}
 			{% set 	qq = 'userdel?_id=' + q %}
 			<form method="post">
-			{# <div><# user._id #></div> #}
+			<div><# user._id #></div>
 			<div>Имя: <b><# user.name #></b></div> 
 			<div>Почта: <b><# user.email #></b></div> 
 			<div>Возраст: <b><# user.age #></b></div> 
 			<input type="submit" value="Удалить пользователя" onclick="javascript: form.action='<#qq#>';">
-			<input type="submit" value="Редактировать пользователя" onclick="javascript: form.action='/renew_user_page?name=<#user.name#>&email=<#user.email#>&age=<#user.age#>';">
+			<input type="submit" value="Редактировать пользователя" onclick="javascript: form.action='/renew_user_page?name=<#user.name#>&email=<#user.email#>&age=<#user.age#>&_id=<#user._id#>';">
 			<div><b>-----------------------------------------</b></div>	
 		{% endfor %}
 
