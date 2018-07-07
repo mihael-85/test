@@ -66,10 +66,7 @@ async function renew(req, res) {
 	
 		if(!validator.isInt(age))
 			return sendErr(res, 'ошибка в формате age')	
-	//проверка, существет ли пользователь уже
-		// let found = await userService.findUser(name)
-		// console.log('нашли', found)
-		// if(found=='') return sendErr(res, 'пользователь не существует')
+
 	
 		//замена пользовательских данных
 		let renewResult =  await userService.renewUser({
@@ -80,8 +77,10 @@ async function renew(req, res) {
 
 		console.log('renew result:', renewResult)
 
-		if(renewResult.n==0) res.send({msg: 'полльзователь с таким name не найден'})
-		else if (renewResult.nModified==0) res.send({msg: 'нечего изменять!'})
+		if(renewResult.n==0) 
+			res.send({msg: 'полльзователь с таким name не найден'})
+		else if (renewResult.nModified==0) 
+			res.send({msg: 'нечего изменять!'})
 		else res.send({msg: 'все ок'})
 
 	} 	catch(err) {
